@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chat Interface</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import socket.io for communication between connected clients -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    
+    <!-- import the webpage's client-side javascript file -->
+    <script src="client.js" defer></script>
+  </head>
+  <body>
+    <!-- TODO: update/add/delete HTML as you see fit, and update
+               the JavaScript to match! -->
+    <main>
+      <header>
+        <h1>
+          Welcome!
+        </h1>
+      </header>
+      <div id="usernameForm">
+        <form>
+          <label for="username">What's your name?</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Your name"
+          />
+          <button id="usernameSubmit">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div id="chat">
+        <ul id="chatHistory"></ul>
+        <form id="chatForm">
+          <label for="chatText">Type a message:</label>
+          <input
+            type="text"
+            id="chatText"
+            name="chatText"
+            placeholder="Your message"
+          />
+          <button id="chatSubmit">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

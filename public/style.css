@@ -1,0 +1,57 @@
+#chat {
+  visibility: hidden;
+}
+
+#chatHistory {
+  width: 600px;
+  height: 400px;
+  border: 1px solid black;
+  padding: 1em;
+  overflow-y: scroll;
+  list-style: none;
+}
+
+/* next 4 styles are for chat messages,
+ * comment these out to see bubble style below
+ */
+/* .message {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  align-items: start;
+  margin-bottom: 0.25em;
+}
+
+.message div {
+  font-weight: bold;
+}
+
+.message div:after {
+  content: ":";
+}
+
+.message p {
+  margin: 0;
+} */
+
+/* uncomment for chat bubbles */
+.message {
+  margin: 3px auto 3px 3px;
+}
+
+.message p {
+  background: #dddddd;
+  padding: 10px;
+  border-radius: 4px;
+  display: inline-block;
+  text-align:left;
+  margin: 0;
+}
+
+.message div {
+  color: gray;
+  font-size: 0.75rem;
+}
+
+.fromMe {
+  text-align:right;
+}
