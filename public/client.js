@@ -27,36 +27,6 @@ console.log(selectedEmoji.textContent );
 
 //painting setup 
 const paintingDiv = document.getElementById("painting");
-fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&isOnView=true&q=emotion")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    const objectIDs = data.objectIDs;
-    const objectPromises = objectIDs.map((id) =>
-      fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-        .then((response) => response.json())
-    );
-    return Promise.all(objectPromises);
-  })
-  .then((metObjects) => {
-    const myObjects = metObjects.filter((object) => object.primaryImageSmall !== null);
-    //myObjects.forEach(async (object) => {
-    let object = myObjects[7];
-    console.log(object);
-    const newDiv = document.createElement("div");
-    newDiv.className = "my-object";
-    /*     <h2>${object.title}</h2>
-    <p>Artist: ${object.artistDisplayName}</p>
-    <p>Date: ${object.objectDate}</p> 
-    */
-    newDiv.innerHTML = `
-    <img src="${object.primaryImageSmall}" alt="${object.title}" />
-  `;
-    paintingDiv.appendChild(newDiv);
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
 
 // chat
 const chatForm = document.getElementById("chat");
@@ -105,6 +75,37 @@ usernameForm.addEventListener("submit", function(event) {
     // hide username form on the page and show the chat!
     usernameForm.style.visibility = "hidden";
     chatForm.style.visibility = "visible";
+    paintingDiv.style.visibility = "visible";
+    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&isOnView=true&q=emotion")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    const objectIDs = data.objectIDs;
+    const objectPromises = objectIDs.map((id) =>
+      fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+        .then((response) => response.json())
+    );
+    return Promise.all(objectPromises);
+  })
+  .then((metObjects) => {
+    const myObjects = metObjects.filter((object) => object.primaryImageSmall !== null);
+    //myObjects.forEach(async (object) => {
+    let object = myObjects[7];
+    console.log(object);
+    const newDiv = document.createElement("div");
+    newDiv.className = "my-object";
+    /*     <h2>${object.title}</h2>
+    <p>Artist: ${object.artistDisplayName}</p>
+    <p>Date: ${object.objectDate}</p> 
+    */
+    newDiv.innerHTML = `
+    <img src="${object.primaryImageSmall}" alt="${object.title}" />
+  `;
+    paintingDiv.appendChild(newDiv);
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
 
     // prevents page from refreshing when form is submitted
     event.preventDefault();
