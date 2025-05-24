@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Chat Interface</title>
+    <title>Art emoji chat</title>
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
 
     <!-- import socket.io for communication between connected clients -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
-    
+
     <!-- import the webpage's client-side javascript file -->
     <script src="client.js" defer></script>
   </head>
@@ -21,37 +21,72 @@
                the JavaScript to match! -->
     <main>
       <header>
-        <h1>
-          Welcome!
-        </h1>
+        <h1>Art emoji chat</h1>
       </header>
       <div id="usernameForm">
         <form>
-          <label for="username">What's your name?</label>
+          <label for="username">What's your critic name?</label>
           <input
             type="text"
             id="username"
             name="username"
             placeholder="Your name"
           />
-          <button id="usernameSubmit">
-            Submit
-          </button>
+          <button id="usernameSubmit">Submit</button>
         </form>
+      </div>
+      <div id="painting">
+
       </div>
       <div id="chat">
         <ul id="chatHistory"></ul>
         <form id="chatForm">
-          <label for="chatText">Type a message:</label>
+          <label for="emojiSlider">Select an emoji for reflection.</label>
           <input
-            type="text"
-            id="chatText"
-            name="chatText"
-            placeholder="Your message"
+            type="range"
+            id="emojiSlider"
+            name="emojiSlider"
+            min="0"
+            max="29"
+            value="0"
+            step="1"
+            list="emojiList"
           />
-          <button id="chatSubmit">
-            Send Message
-          </button>
+          <datalist id="emojiList">
+            <option value="0" label="😀"></option>
+            <option value="1" label="😂"></option>
+            <option value="2" label="😍"></option>
+            <option value="3" label="😎"></option>
+            <option value="4" label="😭"></option>
+            <option value="5" label="👍"></option>
+            <option value="6" label="🎉"></option>
+            <option value="7" label="❤️"></option>
+            <option value="8" label="🔥"></option>
+            <option value="9" label="🌟"></option>
+            <option value="10" label="🤔"></option>
+            <option value="11" label="😅"></option>
+            <option value="12" label="😡"></option>
+            <option value="13" label="😱"></option>
+            <option value="14" label="😴"></option>
+            <option value="15" label="🤩"></option>
+            <option value="16" label="😇"></option>
+            <option value="17" label="🤯"></option>
+            <option value="18" label="😜"></option>
+            <option value="19" label="🤗"></option>
+            <option value="20" label="😢"></option>
+            <option value="21" label="😋"></option>
+            <option value="22" label="🤤"></option>
+            <option value="23" label="😎"></option>
+            <option value="24" label="😏"></option>
+            <option value="25" label="😬"></option>
+            <option value="26" label="🤪"></option>
+            <option value="27" label="😵"></option>
+            <option value="28" label="🤓"></option>
+            <option value="29" label="😇"></option>
+          </datalist>
+          <span id="selectedEmoji">😀</span>
+          <button id="chatSubmit">Send Emoji</button>
+        </form>
         </form>
       </div>
     </main>

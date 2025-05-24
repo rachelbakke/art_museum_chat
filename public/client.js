@@ -14,12 +14,65 @@ socket.on("newMessage", onReceiveMessage);
 
 /********************************************************************
  * HTML elements we'll need to access here in the JavaScipt
- *
+ *        <script>
+          const emojiSlider = document.getElementById('emojiSlider');
+          const selectedEmoji = document.getElementById('selectedEmoji');
+          const emojis = ['😀', '😂', '😍', '😎', '😭', '👍', '🎉', '❤️', '🔥', '🌟'];
+console.log(selectedEmoji.textContent );
+          emojiSlider.addEventListener('input', () => {
+            selectedEmoji.textContent = emojis[emojiSlider.value];
+          });
+        </script>
  */
+
+//painting setup 
+const paintingDiv = document.getElementById("painting");
+fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&isOnView=true&q=emotion")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    const objectIDs = data.objectIDs;
+    const objectPromises = objectIDs.map((id) =>
+      fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+        .then((response) => response.json())
+    );
+    return Promise.all(objectPromises);
+  })
+  .then((metObjects) => {
+    const myObjects = metObjects.filter((object) => object.primaryImageSmall !== null);
+    //myObjects.forEach(async (object) => {
+    let object = myObjects[7];
+    console.log(object);
+    const newDiv = document.createElement("div");
+    newDiv.className = "my-object";
+    /*     <h2>${object.title}</h2>
+    <p>Artist: ${object.artistDisplayName}</p>
+    <p>Date: ${object.objectDate}</p> 
+    */
+    newDiv.innerHTML = `
+    <img src="${object.primaryImageSmall}" alt="${object.title}" />
+  `;
+    paintingDiv.appendChild(newDiv);
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
 
 // chat
 const chatForm = document.getElementById("chat");
-const chatInput = document.getElementById("chatText");
+//const chatInput = document.getElementById("chatText");
+const emojiSlider = document.getElementById("emojiSlider");
+const selectedEmoji = document.getElementById("selectedEmoji");
+const emojis = [
+  "😀", "😂", "😍", "😎", "😭", "👍", "🎉", "❤️", "🔥", "🌟",
+  "🤔", "😅", "😡", "😱", "😴", "🤩", "😇", "🤯", "😜", "🤗",
+  "😢", "😋", "🤤", "😎", "😏", "😬", "🤪", "😵", "🤓", "😇"
+];
+
+// Update the selected emoji when the slider value changes
+emojiSlider.addEventListener("input", () => {
+  selectedEmoji.textContent = emojis[emojiSlider.value];
+});
 const chatSubmit = document.getElementById("chatSubmit");
 const chatHistory = document.getElementById("chatHistory");
 
@@ -73,10 +126,10 @@ chatForm.addEventListener("submit", function(event) {
 
   // make sure that form submission came from chat
   // (not username input)
-  if (event.submitter === chatSubmit || event.submitter === chatInput) {
+  if (event.submitter === chatSubmit ) {
     
     // get what's typed the box:
-    const text = chatInput.value;
+    const text = selectedEmoji.textContent; //chatInput.value;
 
     // don't send empty text
     if (text === "") {
@@ -97,7 +150,8 @@ chatForm.addEventListener("submit", function(event) {
     socket.emit("chatMessage", data);
 
     // reset the text box to be empty
-    chatInput.value = "";
+    emojiSlider.value = 0;
+    selectedEmoji.textContent = emojis[0];
 
     // prevents page from refreshing when form is submitted
     event.preventDefault();
