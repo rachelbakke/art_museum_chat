@@ -1,10 +1,6 @@
 // client-side js, loaded by index.html
 // run by the browser each time the page is loaded
 
-/** 
- * A study conducted at the Metropolitan Museum of Art 15 years ago found that the mean amount of time visitors spent looking at great works of art was 27.2 s, with the median at 17.0 s and the mode at 10.0 s (J. K. Smith & Smith, 2001). The study presented here aimed to revisit that study at The Art Institute of Chicago and expand on it by including a larger sample size, a larger number of artworks from more-diverse genres and time periods, and separate observations for time spent looking at the artworks and reading the accompanying labels. As with the original study, the effects of gender, age, and group size on time spent looking were also examined. The results were remarkably similar to those of the 2001 study, with the mean amount of time spent looking measured at 28.63 s, the median at 21.00 s, and the mode at 10.00 s. As in the 2001 study, there were no significant effects for gender or age, and there was a small group size effect for visitors in groups of 3 or more. A noteworthy finding from the current study was the large percentage of visitors taking what we term arties, that is, selfies taken with the artworks. Arties were taken at every artwork by visitors regardless of gender, apparent age, or group size. Taken together, the results demonstrate that the time people spend viewing artworks has not changed much. What has changed, however, is how they spend that time.
- */
-
 console.log("hello world :o");
 
 /********************************************************************
@@ -98,6 +94,10 @@ usernameForm.addEventListener("submit", function(event) {
     console.log(object);
     const newDiv = document.createElement("div");
     newDiv.className = "my-object";
+    /*     <h2>${object.title}</h2>
+    <p>Artist: ${object.artistDisplayName}</p>
+    <p>Date: ${object.objectDate}</p> 
+    */
     newDiv.innerHTML = `
     <img src="${object.primaryImageSmall}" alt="${object.title}" />
   `;

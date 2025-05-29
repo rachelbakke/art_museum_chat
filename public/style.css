@@ -16,38 +16,23 @@ header {
 
 #chat {
   visibility: hidden;
-  flex: 1 1 400px; /* Responsive width */
-  max-width: 500px;
+  width: 100%; /* Full width of the page */
+  margin: 20px 0; /* Add spacing above and below */
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /* Stack chat elements vertically */
+  align-items: center; /* Center chat content horizontally */
   box-sizing: border-box;
-  margin: 0 10px;
-}
-
-#chat-painting-wrapper {
-  display: flex;
-  flex-direction: row; /* Align chat and painting side by side */
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px; /* Space between painting and chat */
-  width: 100%;
-  margin: 20px 0;
-  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 #painting {
   visibility: hidden;
-  width: 300px;
-  height: 380px;
-  overflow: hidden;
-  display: flex;
+  width: 300px; /* Set the width of the paintingDiv */
+  height: 400px; /* Set the height of the paintingDiv */
+  border: 2px solid #ccc; /* Optional: Add a border for clarity */
+  overflow: hidden; /* Ensure content doesn't overflow the div */
+  display: flex; /* Center the image */
   justify-content: center;
   align-items: center;
-  border: 10px solid #8B5E3C;
-  padding: 8px;
-  box-shadow: 0 0 0 5px #D2B48C, 0 0 0 10px #8B5E3C;
-  background-color: #f8f4e3;
 }
 
 #painting img {
@@ -104,37 +89,6 @@ header {
   list-style: none;
   box-sizing: border-box; /* Include padding and border in width/height */
 }
-
-#usernameForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-#usernameForm form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-#usernameForm input[type="text"] {
-  padding: 10px;
-  font-size: 16px;
-  width: 250px;
-  border: #000000 2px solid;
-}
-
-#usernameSubmit {
-  padding: 8px 16px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: white;
-  border: #000000 2px solid;
-}
-
 
 /* next 4 styles are for chat messages,
  * comment these out to see bubble style below
