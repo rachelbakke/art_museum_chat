@@ -8,7 +8,7 @@
     <title>Art emoji chat</title>
 
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <!-- import socket.io for communication between connected clients -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
@@ -17,8 +17,7 @@
     <script src="client.js" defer></script>
   </head>
   <body>
-    <!-- TODO: update/add/delete HTML as you see fit, and update
-               the JavaScript to match! -->
+
     <main>
       <header>
         <h1>Art emoji chat</h1>
@@ -35,8 +34,8 @@
           <button id="usernameSubmit">Submit</button>
         </form>
       </div>
+      <div id="chat-painting-wrapper">
       <div id="painting">
-
       </div>
       <div id="chat">
         <ul id="chatHistory"></ul>
@@ -89,6 +88,7 @@
         </form>
         </form>
       </div>
+    </div>
     </main>
   </body>
 </html>
